@@ -1,0 +1,212 @@
+// =============================================================================
+// Jenkins Pipeline for GitLab → Registry → Kubernetes
+// =============================================================================
+//
+// This pipeline:
+// 1. Checks out code from GitLab
+// 2. Builds Docker image with Buildah
+// 3. Pushes to internal registry
+// 4. Deploys to Kubernetes
+//
+// Requirements:
+// - GitLab webhook configured
+// - Jenkinsfile in repository root
+// - k8s/ directory with deployment.yaml and service.yaml
+// - ServiceAccount: jenkins-deployer with proper RBAC
+
+pipeline {
+    agent {
+        kubernetes {
+            yaml '''
+apiVersion: v1
+kind: Pod
+metadata:
+  labels:
+    jenkins: agent
+spec:
+  serviceAccountName: jenkins-deployer
+  containers:
+  - name: buildah
+    image: quay.io/buildah/stable:latest
+    command:
+    - cat
+    tty: true
+    securityContext:
+      privileged: true
+    volumeMounts:
+    - name: varlibcontainers
+      mountPath: /var/lib/containers
+  - name: kubectl
+    image: alpine/k8s:1.28.3
+    command:
+    - cat
+    tty: true
+  volumes:
+  - name: varlibcontainers
+    emptyDir: {}
+'''
+        }
+    }
+
+    // =============================================================================
+    // CONFIGURATION
+    // =============================================================================
+    environment {
+        // Registry configuration
+        REGISTRY = '10.152.14.66:30500'
+        // Image name
+        IMAGE_NAME = 'emtl-data-loader-server'
+        // Kubernetes namespace
+        APP_NAMESPACE = 'production'
+    }
+
+    // =============================================================================
+    // PIPELINE STAGES
+    // =============================================================================
+    stages {
+
+        // -------------------------------------------------------------------------
+        // Stage 1: Checkout Code
+        // -------------------------------------------------------------------------
+        stage('Checkout') {
+            steps {
+                echo "=========================================="
+                echo "Checking out code from GitLab"
+                echo "=========================================="
+                checkout scm
+
+                script {
+                    // Print git info
+                    sh 'git log -1 --oneline'
+                    sh 'git branch -a'
+
+                    env.IMAGE_TAG  = sh(script: 'git rev-parse --short HEAD', returnStdout: true).trim()
+                    env.IMAGE_FULL = "${env.REGISTRY}/${env.IMAGE_NAME}:${env.IMAGE_TAG}"
+
+                    echo "Image tag: ${env.IMAGE_TAG}"
+                    echo "Full image ref: ${env.IMAGE_FULL}"
+                }
+            }
+        }
+
+        // -------------------------------------------------------------------------
+        // Stage 2: Build Docker Image
+        // -------------------------------------------------------------------------
+        stage('Build Image') {
+            steps {
+                echo "=========================================="
+                echo "Building Docker image"
+                echo "=========================================="
+
+                container('buildah') {
+                    dir('data_server') {
+                        sh """
+                            echo "Building ${IMAGE_FULL}"
+
+                            buildah build --format docker \\
+                              --build-arg BUILD_DATE=\$(date -u +"%Y-%m-%dT%H:%M:%SZ") \\
+                              --build-arg VCS_REF=${env.GIT_COMMIT} \\
+                              --build-arg VERSION=${IMAGE_TAG} \\
+                              -t ${IMAGE_FULL} \\
+                              -t ${REGISTRY}/${IMAGE_NAME}:latest \\
+                              -f Dockerfile .
+
+                            echo "✓ Image built successfully"
+                            buildah images | grep ${IMAGE_NAME}
+                        """
+                    }
+                }
+            }
+        }
+
+        // -------------------------------------------------------------------------
+        // Stage 3: Push to Registry
+        // -------------------------------------------------------------------------
+        stage('Push to Registry') {
+            steps {
+                echo "=========================================="
+                echo "Pushing image to registry"
+                echo "=========================================="
+
+                container('buildah') {
+                    sh """
+                        echo "Pushing ${IMAGE_FULL}"
+
+                        buildah push --tls-verify=false ${IMAGE_FULL}
+                        buildah push --tls-verify=false ${REGISTRY}/${IMAGE_NAME}:latest
+
+                        echo "✓ Image pushed successfully"
+                    """
+                }
+            }
+        }
+
+        // -------------------------------------------------------------------------
+        // Stage 4: Deploy to Kubernetes
+        // -------------------------------------------------------------------------
+        stage('Deploy to Kubernetes') {
+            steps {
+                echo "=========================================="
+                echo "Deploying to Kubernetes"
+                echo "=========================================="
+
+                container('kubectl') {
+                    dir('data_server') {
+                        sh """
+                            # Create namespace if not exists
+                            kubectl create namespace ${APP_NAMESPACE} || true
+
+                            # Apply storage
+                            if [ -f k8s/storage.yaml ]; then
+                                kubectl apply -f k8s/storage.yaml -n ${APP_NAMESPACE}
+                            fi
+
+                            # Apply deployment configuration
+                            if [ -f k8s/deployment.yaml ]; then
+                                kubectl apply -f k8s/deployment.yaml -n ${APP_NAMESPACE}
+                            else
+                                echo "ERROR: k8s/deployment.yaml not found — aborting"
+                                exit 1
+                            fi
+
+                            # Update deployment image
+                            # FIX 5: Removed || true — silent failure here caused the rollout timeout
+                            #         with no useful error message in prior runs.
+                            kubectl set image deployment/${IMAGE_NAME} \\
+                              ${IMAGE_NAME}=${IMAGE_FULL} \\
+                              -n ${APP_NAMESPACE}
+
+                            # Apply service + ingress configuration
+                            if [ -f k8s/service.yaml ]; then
+                                kubectl apply -f k8s/service.yaml -n ${APP_NAMESPACE}
+                            fi
+
+                            # Wait for rollout to complete
+                            echo "Waiting for deployment rollout..."
+                            kubectl rollout status deployment/${IMAGE_NAME} \\
+                              -n ${APP_NAMESPACE} \\
+                              --timeout=5m
+
+                            echo "\\n✓ Deployment completed successfully"
+                            echo "\\nDeployment status:"
+                            kubectl get deployments -n ${APP_NAMESPACE} -l app=${IMAGE_NAME}
+                            echo "\\nPods:"
+                            kubectl get pods -n ${APP_NAMESPACE} -l app=${IMAGE_NAME}
+                            echo "\\nServices:"
+                            kubectl get svc -n ${APP_NAMESPACE} -l app=${IMAGE_NAME}
+                        """
+                    }
+                }
+            }
+        }
+    }
+
+    post {
+        success {
+            echo "✓ Build successful! EMT data loader"
+        }
+        failure {
+            echo "✗ Build failed! EMT data loader"
+        }
+    }
+}

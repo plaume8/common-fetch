@@ -1,0 +1,28 @@
+dataset_id: deddiag
+
+description: |
+  The dataset contains recordings of 15 homes over a period of up to 3.5 years, wherein total 50 appliances 
+  have been recorded at a frequency of 1 Hz. Recorded appliances are of significance for load-shifting purposes 
+  such as dishwashers, washing machines and refrigerators. One home also includes three-phase mains readings 
+  that can be used for disaggregation tasks. Additionally, DEDDIAG contains manual ground truth event annotations 
+  for 14 appliances, that provide precise start and stop timestamps.
+
+  Authors: Wenninger, Marc; Maier, Andreas; Schmidt, Jochen
+  Paper: https://www.nature.com/articles/s41597-021-00963-2
+  Raw data: https://figshare.com/articles/dataset/DEDDIAG_a_domestic_electricity_demand_dataset_of_individual_appliances_in_Germany/13615073/1
+
+request_logic: |
+  - The household id (between 0 to 14)
+  - The data of the household that should be retrieved:
+    - 'house_description': house description, provides demographic data such as number of residents, their age, regularity of absence and normal absence duration.
+    - 'item_description': appliances (item) meta data, containing a unique ID, name, device category and house ID.
+    - 'item_data': measurements, annotation and annotation labels for all appliances (items)
+  - If 'item_data' is selected as 'data_type' then 'item_data_type' must be filled as well:
+    - 'annotations': all item (appliance) annotations of the selected household
+    - 'annotation_labels': all item (appliance) annotation labels of the selected household
+    - 'data': all item (appliance) measurements of the selected household
+
+request:
+  house_id: 0
+  data_type: ""
+  item_data_type: ""

@@ -1,0 +1,28 @@
+dataset_id: wpuq
+
+description: |
+  WPuQ dataset:
+  Electric load of 38 households measured in a small village in Lower Saxony, Germany. 
+  Data is available for voltage, reactive power and active power. 
+  Separate measurements are available for each total household load, for each heat pump and at the local power transformer. 
+  Different temporal and spatial aggregations are available for convenience.
+  
+  Authors: Schlemminger, Marlon; Ohrdes, Tobias; Schneider, Elisabeth; Knoop, Michael
+  Paper: https://www.nature.com/articles/s41597-022-01156-1
+  Raw data: https://zenodo.org/records/5642902
+  
+request_logic: |
+  - For each year (2018–2020), multiple hdf5 files exist that contain the data tables (see original paper).
+  - The WPuQ hdf5 files organize data tables in a three-level tree structure.
+  - Each request specifies the top, mid, and low-level nodes for which data should be retrieved.
+  - For every valid path combination, the corresponding leaf-node data tables are returned as csv files.
+  - If a request contains multiple nodes at any level, all possible path combinations are considered.
+  - For example, if top_level_nodes = ['a'], mid_level_nodes = ['m', 'n'], and low_level_nodes = ['l'], the retriever retrieves the data tables for the paths a-m-l and a-n-l.
+  - Additionally, if a node level is specified as an empty list (eg, mid_level_nodes = []), the retriever treats this as a wildcard and includes all available nodes at that hierarchy level.
+
+request:
+  year: 2020
+  file_name: data_15min
+  top_level_nodes: ['NO_PV', 'WITH_PV']
+  mid_level_nodes: []  # all nodes
+  low_level_nodes: ['HOUSEHOLD']

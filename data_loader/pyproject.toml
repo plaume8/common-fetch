@@ -1,0 +1,30 @@
+[build-system]
+requires = ["hatchling >= 1.27"]
+build-backend = "hatchling.build"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/cfl"]
+
+[project]
+name = "common-fetch-loader"
+version = "0.1.0"
+authors = [
+    { name = "Linus Sander", email = "linus.sander@icloud.com" },
+]
+description = "Common Fetch Data Loader"
+readme = "README_pip.md"
+requires-python = ">=3.10"
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "Operating System :: OS Independent",
+]
+dependencies = [
+    "tqdm>=4",
+    "yaspin>=3",
+    "pandas>=2",
+]
+license = "Apache-2.0"
+license-files = ["LICEN[CS]E*"]
+
+[project.urls]
+Homepage = "https://github.com/plaume8/common-fetch"
