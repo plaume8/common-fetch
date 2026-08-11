@@ -54,7 +54,7 @@ async def lifespan(app: FastAPI):
 # -------- API KEY HEADER SETUP --------
 
 
-API_KEY_NAME = "EMT-API-KEY"
+API_KEY_NAME = "CFL-API-KEY"
 api_key_header = APIKeyHeader(name=API_KEY_NAME, auto_error=False)
 
 
@@ -62,7 +62,7 @@ async def verify_api_key(api_key: str = Security(api_key_header)):
     if not verify_key(api_key):
         raise HTTPException(
             status_code=HTTP_403_FORBIDDEN,
-            detail="Invalid or missing EMT-API-KEY (in header)."
+            detail="Invalid or missing CFL-API-KEY (in header)."
         )
     return api_key
 

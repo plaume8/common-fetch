@@ -1,7 +1,7 @@
 dataset_id: dummy_dataset
 
 description: |
-  This dataset is intended for testing the EMT data loader. 
+  This dataset is intended for testing the common-fetch data loader. 
   The only mandatory parameter is 'year', which determines the dataset to be loaded. 
 
 request_logic: |

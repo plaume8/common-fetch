@@ -14,7 +14,7 @@ spec:
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
-  name: emtl-data-loader-server-api-keys-pvc
+  name: emtl-data-loader-server-CFL-API-KEYs-pvc
   namespace: production
 spec:
   accessModes:

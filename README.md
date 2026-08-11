@@ -241,7 +241,7 @@ To use it, simply run the following commands:
 
 > Attention, before any command: get the pod name of the emtl-data-loader-server first: `kubectl get pods -n production`)
 
-> Hint: for a default user API key checkout Friday server: `/home/emt/EMT-Data-Loader/default-user-api-key.txt`)
+> Hint: for a default user API key checkout Friday server: `/home/emt/EMT-Data-Loader/default-user-CFL-API-KEY.txt`)
 
 Create a new API key:
 ```bash

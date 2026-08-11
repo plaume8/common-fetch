@@ -36,7 +36,7 @@ spec:
           - mountPath: /app/src/emtl_server/retrievers/raw_data
             name: emtl-data-loader-server-raw-data-pvc
           - mountPath: /app/src/emtl_server/auth/keys
-            name: emtl-data-loader-server-api-keys-pvc
+            name: emtl-data-loader-server-CFL-API-KEYs-pvc
         resources:
           requests:
             cpu: "500m"
@@ -48,6 +48,6 @@ spec:
         - name: emtl-data-loader-server-raw-data-pvc
           persistentVolumeClaim:
             claimName: emtl-data-loader-server-raw-data-pvc
-        - name: emtl-data-loader-server-api-keys-pvc
+        - name: emtl-data-loader-server-CFL-API-KEYs-pvc
           persistentVolumeClaim:
-            claimName: emtl-data-loader-server-api-keys-pvc
+            claimName: emtl-data-loader-server-CFL-API-KEYs-pvc

@@ -5,8 +5,8 @@ from requests import RequestException
 from tqdm import tqdm
 from yaspin import yaspin
 
-from emtl.basics import _get_api_key
-from emtl.utils import _get_base_url, _get_cache
+from cfl.basics import _get_api_key, _get_host
+from cfl.data_cache import _get_cache
 
 
 CHUNK_SIZE = 8192  # 8 KB
@@ -25,8 +25,8 @@ def get_data_files(request: dict[str, Any], detailed_progress_bar: bool = False)
     """
 
     # query /data endpoint with request schema to trigger data retrievers
-    headers = {"EMT-API-KEY": _get_api_key()}
-    url_retrievers = f"{_get_base_url()}/data"
+    headers = {"CFL-API-KEY": _get_api_key()}
+    url_retrievers = f"{_get_host()}/data"
     spinner = yaspin(text="Data server: Collecting and preparing data...")
     spinner.start()
     response = requests.post(url_retrievers, headers=headers, json=request)
@@ -84,9 +84,9 @@ def _retrieve_data_file(file_name: str, dir_path: Path, show_progress_bar: bool 
     """
 
     file_name_path = dir_path / file_name
-    url_download = f"{_get_base_url()}/data/download/{file_name}"
+    url_download = f"{_get_host()}/data/download/{file_name}"
     progress: Optional[tqdm] = None
-    headers = {"EMT-API-KEY": _get_api_key()}
+    headers = {"CFL-API-KEY": _get_api_key()}
 
     try:
         with requests.get(url_download, headers=headers, stream=True) as r:

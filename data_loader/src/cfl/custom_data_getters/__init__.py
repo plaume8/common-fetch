@@ -1,5 +1,5 @@
-from . import wpuq  # ← expose wpuq as a submodule
+from . import dummy_dataset
 
 __all__ = [
-    'wpuq'
+    'dummy_dataset'
 ]

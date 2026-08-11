@@ -1,16 +1,16 @@
 import yaml
 
 from conftest import DATA_SERVER_URL, DATA_SERVER_ROOT
-from emtl.basics import get_available_dataset_ids, get_request_schema, clear_cache, authenticate
-from emtl.data import get_data_files
-from emtl.utils import _set_server_base_url, _get_cache
+from cfl.basics import set_host, get_available_dataset_ids, get_request_schema, clear_cache, authenticate
+from cfl.data import get_data_files
+from cfl.data_cache import _get_cache
 
 """
 All System Test.
 Basically, all low-level API functions from the pip package are called and verified using the dummy_data.
 """
 
-_set_server_base_url(DATA_SERVER_URL)
+set_host(DATA_SERVER_URL)
 
 # ATTENTION: make sure a test api key exists in the emtl_server_auth api_keys.csv
 # can be generated locally by calling:

@@ -2,15 +2,14 @@ import shutil
 import tempfile
 from pathlib import Path
 
-
-TEMP_DIR_DEFAULT_NAME = 'emt-dataloader-cache-k4wJx1o9'
+TEMP_DIR_DEFAULT_NAME = 'cfl-cache-k4wJx1o9'
 
 
 class DataCache:
     """
-    The DataCache caches and manages loaded data of the EMT data_loader package, thereby avoiding unnecessary reloads.
-    The stored data is saved in the background in a dedicated temp directory and remains available even after closing
-    the terminal, environment, etc.
+    The DataCache caches and manages loaded data of the common-fetch data_loader package,
+    thereby avoiding unnecessary reloads. The stored data is saved in the background in a dedicated temp directory
+    and remains available even after closing the terminal, environment, etc.
     """
 
     def __init__(self) -> None:
@@ -50,3 +49,13 @@ class DataCache:
             self._cache_dir_path.mkdir(parents=True, exist_ok=True)
         except OSError as e:
             raise RuntimeError(f"Failed to create cache directory: {e}")
+
+
+CACHE = None
+
+
+def _get_cache() -> DataCache:
+    global CACHE
+    if CACHE is None:
+        CACHE = DataCache()
+    return CACHE
