@@ -1,10 +1,10 @@
 <mxfile host="Electron" agent="Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) draw.io/26.0.16 Chrome/132.0.6834.196 Electron/34.2.0 Safari/537.36" version="26.0.16">
   <diagram name="Page-1" id="YXLGznQ4-UDt8m02n0Ei">
-    <mxGraphModel dx="553" dy="1253" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+    <mxGraphModel dx="1695" dy="1407" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
-        <mxCell id="imfxCnKngNdZS6usH3Sz-19" value="emt-loader pip package" style="rounded=0;whiteSpace=wrap;html=1;verticalAlign=top;" parent="1" vertex="1">
+        <mxCell id="imfxCnKngNdZS6usH3Sz-19" value="cf-loader pip package" style="rounded=0;whiteSpace=wrap;html=1;verticalAlign=top;" parent="1" vertex="1">
           <mxGeometry x="1460" y="160" width="420" height="240" as="geometry" />
         </mxCell>
         <mxCell id="imfxCnKngNdZS6usH3Sz-18" value="data_server (FastAPI)" style="rounded=0;whiteSpace=wrap;html=1;verticalAlign=top;" parent="1" vertex="1">
@@ -96,10 +96,10 @@
         <mxCell id="eAVrSvyFKFh6YPSi0dL2-41" value="dataset_id" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f5f5f5;strokeColor=#666666;fontColor=#333333;verticalAlign=top;" parent="1" vertex="1">
           <mxGeometry x="1690" y="220" width="150" height="140" as="geometry" />
         </mxCell>
-        <mxCell id="eAVrSvyFKFh6YPSi0dL2-42" value="get_heatpump_load_data" style="rounded=1;whiteSpace=wrap;html=1;fontSize=9;fillColor=#ffe6cc;strokeColor=#d79b00;opacity=60;" parent="1" vertex="1">
+        <mxCell id="eAVrSvyFKFh6YPSi0dL2-42" value="get_data_ ..." style="rounded=1;whiteSpace=wrap;html=1;fontSize=9;fillColor=#ffe6cc;strokeColor=#d79b00;opacity=60;" parent="1" vertex="1">
           <mxGeometry x="1700" y="310" width="130" height="20" as="geometry" />
         </mxCell>
-        <mxCell id="eAVrSvyFKFh6YPSi0dL2-43" value="get_household_load_data" style="rounded=1;whiteSpace=wrap;html=1;fontSize=9;fillColor=#ffe6cc;strokeColor=#d79b00;opacity=60;" parent="1" vertex="1">
+        <mxCell id="eAVrSvyFKFh6YPSi0dL2-43" value="get_data_ ..." style="rounded=1;whiteSpace=wrap;html=1;fontSize=9;fillColor=#ffe6cc;strokeColor=#d79b00;opacity=60;" parent="1" vertex="1">
           <mxGeometry x="1700" y="280" width="130" height="20" as="geometry" />
         </mxCell>
         <mxCell id="eAVrSvyFKFh6YPSi0dL2-44" value="print_description" style="rounded=1;whiteSpace=wrap;html=1;fontSize=9;fillColor=#ffe6cc;strokeColor=#d79b00;opacity=60;" parent="1" vertex="1">
@@ -129,28 +129,28 @@
         <mxCell id="eAVrSvyFKFh6YPSi0dL2-56" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0;exitY=0.5;exitDx=0;exitDy=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;entryPerimeter=0;endArrow=none;startFill=0;" parent="1" source="eAVrSvyFKFh6YPSi0dL2-18" target="eAVrSvyFKFh6YPSi0dL2-55" edge="1">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="syxZ3bZTC-5pVm9o730Y-11" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;endArrow=none;startFill=0;" edge="1" parent="1" source="syxZ3bZTC-5pVm9o730Y-6" target="syxZ3bZTC-5pVm9o730Y-7">
+        <mxCell id="syxZ3bZTC-5pVm9o730Y-11" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;endArrow=none;startFill=0;" parent="1" source="syxZ3bZTC-5pVm9o730Y-6" target="syxZ3bZTC-5pVm9o730Y-7" edge="1">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="syxZ3bZTC-5pVm9o730Y-6" value="Data Server&lt;div&gt;(FastAPI)&lt;/div&gt;" style="rounded=1;whiteSpace=wrap;html=1;opacity=60;fillColor=#B266FF;strokeColor=#9673a6;gradientColor=#66B2FF;gradientDirection=east;fontSize=16;" vertex="1" parent="1">
+        <mxCell id="syxZ3bZTC-5pVm9o730Y-6" value="Data Server&lt;div&gt;(FastAPI)&lt;/div&gt;" style="rounded=1;whiteSpace=wrap;html=1;opacity=60;fillColor=#B266FF;strokeColor=#9673a6;gradientColor=#66B2FF;gradientDirection=east;fontSize=16;" parent="1" vertex="1">
           <mxGeometry x="1000" y="600" width="120" height="120" as="geometry" />
         </mxCell>
-        <mxCell id="syxZ3bZTC-5pVm9o730Y-7" value="EMT-Loader&lt;div&gt;Pip Package&lt;/div&gt;" style="rounded=1;whiteSpace=wrap;html=1;opacity=60;fillColor=#FFE599;strokeColor=#9673a6;gradientColor=#CC6600;gradientDirection=east;fontSize=16;" vertex="1" parent="1">
+        <mxCell id="syxZ3bZTC-5pVm9o730Y-7" value="CF-Loader&lt;div&gt;Pip Package&lt;/div&gt;" style="rounded=1;whiteSpace=wrap;html=1;opacity=60;fillColor=#FFE599;strokeColor=#9673a6;gradientColor=#CC6600;gradientDirection=east;fontSize=16;" parent="1" vertex="1">
           <mxGeometry x="1160" y="600" width="120" height="120" as="geometry" />
         </mxCell>
-        <mxCell id="syxZ3bZTC-5pVm9o730Y-8" value="pip package end-user:&lt;div&gt;looking for&amp;nbsp;&amp;nbsp;&lt;span style=&quot;background-color: transparent; color: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));&quot;&gt;simple&amp;nbsp;&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;background-color: transparent; color: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));&quot;&gt;access to datasets&lt;/span&gt;&lt;/div&gt;" style="shape=umlActor;verticalLabelPosition=bottom;verticalAlign=top;html=1;outlineConnect=0;" vertex="1" parent="1">
+        <mxCell id="syxZ3bZTC-5pVm9o730Y-8" value="pip package end-user:&lt;div&gt;looking for&amp;nbsp;&amp;nbsp;&lt;span style=&quot;background-color: transparent; color: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));&quot;&gt;simple&amp;nbsp;&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;background-color: transparent; color: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));&quot;&gt;access to datasets&lt;/span&gt;&lt;/div&gt;" style="shape=umlActor;verticalLabelPosition=bottom;verticalAlign=top;html=1;outlineConnect=0;" parent="1" vertex="1">
           <mxGeometry x="1360" y="640" width="20" height="40" as="geometry" />
         </mxCell>
-        <mxCell id="syxZ3bZTC-5pVm9o730Y-15" value="dataset provide:&lt;div&gt;looking to&amp;nbsp;&lt;span style=&quot;background-color: transparent; color: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));&quot;&gt;make their data&amp;nbsp;&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;background-color: transparent; color: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));&quot;&gt;easily accessible&lt;/span&gt;&lt;div&gt;&lt;div&gt;&amp;nbsp;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;" style="shape=umlActor;verticalLabelPosition=bottom;verticalAlign=top;html=1;outlineConnect=0;" vertex="1" parent="1">
+        <mxCell id="syxZ3bZTC-5pVm9o730Y-15" value="dataset provide:&lt;div&gt;looking to&amp;nbsp;&lt;span style=&quot;background-color: transparent; color: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));&quot;&gt;make their data&amp;nbsp;&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;background-color: transparent; color: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));&quot;&gt;easily accessible&lt;/span&gt;&lt;div&gt;&lt;div&gt;&amp;nbsp;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;" style="shape=umlActor;verticalLabelPosition=bottom;verticalAlign=top;html=1;outlineConnect=0;" parent="1" vertex="1">
           <mxGeometry x="900" y="640" width="20" height="40" as="geometry" />
         </mxCell>
-        <mxCell id="syxZ3bZTC-5pVm9o730Y-17" value="" style="shape=flexArrow;endArrow=classic;html=1;rounded=0;endWidth=11.666666666666668;endSize=5.750000000000001;" edge="1" parent="1">
+        <mxCell id="syxZ3bZTC-5pVm9o730Y-17" value="" style="shape=flexArrow;endArrow=classic;html=1;rounded=0;endWidth=11.666666666666668;endSize=5.750000000000001;" parent="1" edge="1">
           <mxGeometry width="50" height="50" relative="1" as="geometry">
             <mxPoint x="960" y="659.58" as="sourcePoint" />
             <mxPoint x="990" y="659.58" as="targetPoint" />
           </mxGeometry>
         </mxCell>
-        <mxCell id="syxZ3bZTC-5pVm9o730Y-18" value="" style="shape=flexArrow;endArrow=classic;html=1;rounded=0;endWidth=11.666666666666668;endSize=5.750000000000001;" edge="1" parent="1">
+        <mxCell id="syxZ3bZTC-5pVm9o730Y-18" value="" style="shape=flexArrow;endArrow=classic;html=1;rounded=0;endWidth=11.666666666666668;endSize=5.750000000000001;" parent="1" edge="1">
           <mxGeometry width="50" height="50" relative="1" as="geometry">
             <mxPoint x="1320.5" y="660" as="sourcePoint" />
             <mxPoint x="1291.5" y="659.58" as="targetPoint" />
