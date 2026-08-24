@@ -51,6 +51,7 @@ class DataCache:
             raise RuntimeError(f"Failed to create cache directory: {e}")
 
 
+# the global base cache used by every data and basics functionality
 CACHE = None
 
 
