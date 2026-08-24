@@ -6,8 +6,8 @@ import numpy as np
 import pandas as pd
 
 
-from emtl_server.errors import RetrieverRequestError
-from emtl_server.utils import filename_sanity_check
+from cf_server.errors import RetrieverRequestError
+from cf_server.utils import filename_sanity_check
 
 
 BASE_DIR = Path(__file__).resolve().parent.parent

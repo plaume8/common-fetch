@@ -1,5 +1,4 @@
 import argparse
-import csv
 import inspect
 from pathlib import Path
 
@@ -8,18 +7,21 @@ from datetime import datetime
 import secrets
 import string
 
-
 BASE_DIR = Path(__file__).resolve().parent / "keys"
 API_KEYS_FILE = BASE_DIR / 'api_keys.csv'
 API_KEYS_LOGS_FILE = BASE_DIR / 'api_keys_log_usage.csv'
-
 
 """
 This Python script provides a straightforward way to manage API keys for the data server. 
 It should be executed as follows:
 - python api_keys_management.py generate_key --name "Alice" --mail "alice@example.com" --others "team-a"
-- python api_keys_management.py deactivate_key --api_key "emt-dataloader-abc123..."
-- python api_keys_management.py reactivate_key --api_key "emt-dataloader-abc123..."
+- python api_keys_management.py deactivate_key --api_key "cf-dataloader-abc123..."
+- python api_keys_management.py reactivate_key --api_key "cf-dataloader-abc123..."
+"""
+
+"""
+This is just a dummy implementation of API keys management 
+-> more sophisticated solutions, adapters, etc. must be implemented
 """
 
 
@@ -34,9 +36,9 @@ def generate_key(name: str, mail: str, others: str) -> str:
 
     # generate random API keys (128 chars: letters + digits)
     alphabet = string.ascii_letters + string.digits
-    api_key = 'emt-dataloader-' + ''.join(secrets.choice(alphabet) for _ in range(64))
+    api_key = 'cf-dataloader-' + ''.join(secrets.choice(alphabet) for _ in range(64))
     while api_key in keys_df['key'].values:  # duplicate check
-        api_key = 'emt-dataloader-' + ''.join(secrets.choice(alphabet) for _ in range(64))
+        api_key = 'cf-dataloader-' + ''.join(secrets.choice(alphabet) for _ in range(64))
 
     # save new key entry
     new_row = {
@@ -60,6 +62,7 @@ def verify_key(api_key: str) -> bool:
         return False
     keys_df = pd.read_csv(API_KEYS_FILE)
     return ((keys_df['key'] == api_key) & keys_df['active']).any()
+
 
 def deactivate_key(api_key: str) -> None:
     """Deactivate key."""
@@ -98,8 +101,8 @@ if __name__ == '__main__':
         epilog="""
             Examples:
             python api_keys_management.py generate_key --name "Alice" --mail "alice@example.com" --others "team-a"
-            python api_keys_management.py deactivate_key --api_key "emt-dataloader-abc123..."
-            python api_keys_management.py reactivate_key --api_key "emt-dataloader-abc123..."
+            python api_keys_management.py deactivate_key --api_key "cf-dataloader-abc123..."
+            python api_keys_management.py reactivate_key --api_key "cf-dataloader-abc123..."
         """
     )
 

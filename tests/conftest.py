@@ -48,7 +48,7 @@ def _tear_down_data_loader() -> None:
     Make sure data_loader local cache is cleared.
     """
     sys_tmp_dir_path = Path(tempfile.gettempdir())
-    shutil.rmtree((sys_tmp_dir_path / 'emt-dataloader-cache-k4wJx1o9'), ignore_errors=True)
+    shutil.rmtree((sys_tmp_dir_path / 'cf-dataloader-cache-k4wJx1o9'), ignore_errors=True)
     print("Data loader teardown successful.")
 
 
@@ -59,7 +59,7 @@ def _run_data_server() -> None:
     env = os.environ.copy()
     env['PYTHONPATH'] = str(DATA_SERVER_ROOT)
     _server_process = subprocess.Popen(
-        ["uvicorn", "emtl_server.main:app", "--host", LOCAL_HOST, "--port", DATA_SERVER_PORT],
+        ["uvicorn", "cf_server.main:app", "--host", LOCAL_HOST, "--port", DATA_SERVER_PORT],
         env=env,
         cwd=str(PROJECT_ROOT),
         stdout=subprocess.PIPE,

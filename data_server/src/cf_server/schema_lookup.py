@@ -4,7 +4,7 @@ import logging
 from typing import Optional, Any
 from pathlib import Path
 
-from emtl_server.utils import filename_sanity_check
+from cf_server.utils import filename_sanity_check
 
 
 logger = logging.getLogger(__name__)

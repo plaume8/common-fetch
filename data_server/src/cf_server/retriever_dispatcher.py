@@ -2,8 +2,8 @@ from pathlib import Path
 import importlib.util
 from typing import Optional, Any
 
-from emtl_server.errors import RetrieverRequestError, GeneralInternalServerError
-from emtl_server.utils import filename_sanity_check
+from cf_server.errors import RetrieverRequestError, GeneralInternalServerError
+from cf_server.utils import filename_sanity_check
 
 BASE_DIR = Path(__file__).resolve().parent
 

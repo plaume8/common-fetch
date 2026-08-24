@@ -2,7 +2,7 @@ import shutil
 from pathlib import Path
 from typing import Optional, Any
 
-from emtl_server.errors import RetrieverRequestError
+from cf_server.errors import RetrieverRequestError
 
 
 BASE_DIR = Path(__file__).resolve().parent.parent

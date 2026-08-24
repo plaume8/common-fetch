@@ -12,17 +12,17 @@ Basically, all low-level API functions from the pip package are called and verif
 
 set_host(DATA_SERVER_URL)
 
-# ATTENTION: make sure a test api key exists in the emtl_server_auth api_keys.csv
+# ATTENTION: make sure a test api key exists in the cf_server_auth api_keys.csv
 # can be generated locally by calling:
 # `python auth/api_keys_management.py generate_key --name "TestUser" --mail "test@test.com" --others ""`
-API_KEY = "emt-dataloader-..."  # TODO
+API_KEY = "cf-dataloader-..."  # TODO before executing tests
 
 
 def test_get_available_dataset_ids():
     """Test pip package `get_available_dataset_ids` functionality."""
 
     authenticate(API_KEY)
-    schemas_dir = DATA_SERVER_ROOT / "emtl_server" / "retrievers" / "schemas"
+    schemas_dir = DATA_SERVER_ROOT / "cf_server" / "retrievers" / "schemas"
     expected_dataset_ids = [p.stem for p in schemas_dir.glob("*.yaml")]
     fetched_dataset_ids = get_available_dataset_ids()
 
@@ -35,7 +35,7 @@ def test_get_request_schema():
 
     authenticate(API_KEY)
     dataset_id = 'dummy_dataset'
-    schema_path = DATA_SERVER_ROOT / "emtl_server" / "retrievers" / "schemas" / f"{dataset_id}.yaml"
+    schema_path = DATA_SERVER_ROOT / "cf_server" / "retrievers" / "schemas" / f"{dataset_id}.yaml"
     with schema_path.open("r", encoding="utf-8") as f:
         expected_schema = yaml.safe_load(f)
     fetched_schema = get_request_schema(dataset_id)
@@ -52,7 +52,7 @@ def test_get_data_files():
         'request': {'year': 2024}
     }
     fetched_file_paths = get_data_files(request)
-    expected_file_path = DATA_SERVER_ROOT / "emtl_server" / "retrievers" / "raw_data" / "dummy_dataset" / f"dummy_data_2024.txt"
+    expected_file_path = DATA_SERVER_ROOT / "cf_server" / "retrievers" / "raw_data" / "dummy_dataset" / f"dummy_data_2024.txt"
 
     assert len(fetched_file_paths) == 1
     assert fetched_file_paths[0].read_text() == expected_file_path.read_text()

@@ -14,11 +14,11 @@ from starlette.status import HTTP_403_FORBIDDEN
 from slowapi import Limiter, _rate_limit_exceeded_handler
 from slowapi.util import get_remote_address
 
-from emtl_server.auth.api_keys_management import verify_key
-from emtl_server.errors import RetrieverRequestError, GeneralInternalServerError
-from emtl_server.retriever_dispatcher import execute_retriever
-from emtl_server.schema_lookup import get_available_dataset_ids, get_schema
-from emtl_server.utils import filename_sanity_check
+from cf_server.auth.api_keys_management import verify_key
+from cf_server.errors import RetrieverRequestError, GeneralInternalServerError
+from cf_server.retriever_dispatcher import execute_retriever
+from cf_server.schema_lookup import get_available_dataset_ids, get_schema
+from cf_server.utils import filename_sanity_check
 
 """
 This is the main FastAPI configuration file that comprises all endpoints.
@@ -27,7 +27,7 @@ For more, check out the official FastAPI docs: https://fastapi.tiangolo.com/#ins
 
 logger = logging.getLogger(__name__)
 RUNTIME_DATA_OUTBOX: Path | None = None
-TEMP_DIR_DEFAULT_NAME = 'emt-dataloader-server-outbox-u4J1tpq8'
+TEMP_DIR_DEFAULT_NAME = 'cf-dataloader-server-outbox-u4J1tpq8'
 
 # -------- LIFESPAN SETUP --------
 
@@ -80,7 +80,7 @@ app.add_exception_handler(RateLimitExceeded, _rate_limit_exceeded_handler)
 
 @app.get("/", response_model=str)
 def read_root():
-    return "Welcome to the TUM EMT Data Loader Server."
+    return "Welcome to the Common-Fetch Data Loader Server."
 
 
 @app.get("/schema/{dataset_id}", response_model=dict[str, Any])

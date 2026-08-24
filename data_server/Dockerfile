@@ -8,7 +8,7 @@ RUN pip install --no-cache-dir -r requirements.txt
 # start gunicorn with uvicorn workers
 EXPOSE 8000
 ENV PYTHONPATH=/app/src
-CMD ["gunicorn", "emtl_server.main:app", \
+CMD ["gunicorn", "cf_server.main:app", \
      "--worker-class", "uvicorn.workers.UvicornWorker", \
      "--workers", "4", \
      "--bind", "0.0.0.0:8000", \
