@@ -1,4 +1,4 @@
-## Common Fetch Data Loader
+## common-fetch data loader
 
 > More information and code are available on the [common-fetch repository](https://github.com/plaume8/common-fetch).
 

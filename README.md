@@ -152,10 +152,9 @@ To do so:
 ##### Updating the Pip Package
 
 After making changes to the package, publish a new version to PyPI:
-1. Open `pyproject.toml` and increment the `version` field.
+1. Open `pyproject.toml` and increment the `version` field OR if this directory is forked: update all fields to your own pip package
 2. Ensure `build` is installed: `pip install build`
 3. From the `/data_loader` directory, run: `python3 -m build && twine upload dist/*`
-4. When prompted for a PyPI token, find it on the Friday server at `/home/emt/EMT-Data-Loader/pypi-token.txt`.
 
 > more: [general pip introduction](https://packaging.python.org/en/latest/tutorials/packaging-projects/)
 
