@@ -206,12 +206,13 @@ To add a new dataset and to make available via the `data_server` for the API and
 
 To test the implementation locally, you can simply run a local FastAPI instance by executing:
 ```bash
-cd data-server/src/emtl_server
+cd data-server/src/cf_server
 export PYTHONPATH="$PWD"
 fastapi dev main.py
 ```
 This starts the server at [http://127.0.0.1:8000](http://127.0.0.1:8000). 
 Use Postman or any HTTP client to test the endpoints.
+See /tests/dummy_testing.ipynb for a simple dummy JupyterNotebook.
 
 ##### Deploying the Updated Server
 
