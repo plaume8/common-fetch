@@ -10,6 +10,7 @@ import string
 BASE_DIR = Path(__file__).resolve().parent / "keys"
 API_KEYS_FILE = BASE_DIR / 'api_keys.csv'
 API_KEYS_LOGS_FILE = BASE_DIR / 'api_keys_log_usage.csv'
+BASE_DIR.mkdir(parents=True, exist_ok=True)
 
 """
 This Python script provides a straightforward way to manage API keys for the data server. 
